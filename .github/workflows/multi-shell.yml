@@ -1,0 +1,22 @@
+name: Multi-Shell Hello World
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+    multi-shell-hello:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Hello From Bash
+          shell: bash
+          run: echo "Hello World from Bash!"
+    
+        - name: Hello From PowerShell
+          shell: pwsh
+          run: Write-Output "Hello World from PowerShell!"
+    
+        - name: Hello From Python
+          shell: python
+          run: print("Hello World from Python!")
