@@ -1,0 +1,33 @@
+name: Job Dependencies Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job_a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job A
+        run: echo "Running Job A"
+        
+  job_b:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job B
+        run: echo "Running Job B"
+
+  job_c:
+    runs-on: ubuntu-latest
+    needs: job_a
+    steps:
+      - name: Run Job C
+        run: echo "Running Job C after Job A"
+
+  job_d:
+    runs-on: ubuntu-latest
+    needs: job_c
+    steps:
+      - name: Run Job D
+        run: echo "Running Job D after Job C"
