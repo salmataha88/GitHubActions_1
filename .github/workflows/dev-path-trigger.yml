@@ -1,0 +1,15 @@
+name: "Dev Path Trigger Workflow"
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'src/**'
+
+jobs:
+    dev-path-job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Run a script
+          run: echo "This job runs on changes to the 'dev' branch in the 'src/' directory."
