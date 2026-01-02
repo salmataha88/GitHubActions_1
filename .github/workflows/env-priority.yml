@@ -1,0 +1,32 @@
+name: Environment Variable Priority
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+    VAR_EXAMPLE: workflow-level
+
+jobs:
+    test-env:
+        runs-on: ubuntu-latest
+        env:
+            VAR_EXAMPLE: job-level
+    
+        steps:
+            - name: Step 1 - Print JOB level VAR
+              run: echo "Step 1:" $VAR_EXAMPLE
+
+            - name: Step 2 - Print STEP level VAR
+              env:
+                VAR_EXAMPLE: step-level
+              run: echo "Step 2:" $VAR_EXAMPLE
+
+
+# Question: Which value appears in Step 1? Which value appears in Step 2?
+# Answer:
+# In Step 1, 
+#    the value "job-level" appears because the job-level environment variable overrides the workflow-level variable.
+# In Step 2, 
+#    the value "step-level" appears because the step-level environment variable overrides both the job-level and workflow-level variables.
