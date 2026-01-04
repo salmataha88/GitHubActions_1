@@ -1,0 +1,15 @@
+name: "PR Path Trigger Workflow"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+
+jobs:
+  pr-path-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR Path Triggered Job
+        run: echo "This job runs only for PRs that modify files in the 'src/' directory."
